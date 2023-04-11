@@ -1,5 +1,8 @@
+import json
+
 def save(user , item , price):
     file = open("jsonData.json", "a")
+    data = json.load(file)
     #add write function to json file 
     #figure out way to create a json array in the file 
     #figure out a way to append data to the json array in the file.

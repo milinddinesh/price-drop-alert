@@ -20,6 +20,7 @@ async def hello(interaction: discord.Interaction):
 @client.tree.command(name="track")
 @app_commands.describe(item = "Item to track",url="amazon product url")
 async def track(interaction: discord.Interaction, item:str, url:str):
+    print("something")
     
 
 @client.event
