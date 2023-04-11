@@ -7,6 +7,7 @@ from discord import app_commands
 from discord.ext import commands
 import os
 from dotenv import load_dotenv
+import botHelper
 
 load_dotenv()
 
@@ -18,10 +19,13 @@ async def hello(interaction: discord.Interaction):
 
 
 @client.tree.command(name="track")
-@app_commands.describe(item = "Item to track",url="amazon product url")
-async def track(interaction: discord.Interaction, item:str, url:str):
-    print("something")
-    
+@app_commands.describe(item = "item name",url="amazon url")
+async def track(interaction: discord.Interaction, item :str , url:str):
+    await interaction.response.defer()
+    async with interaction.channel.typing():
+        price = botHelper.save(interaction.user.name,item,url)
+
+    await interaction.followup.send("Current price : ", price , ". I'll let you know when the price drops" )
 
 @client.event
 async def on_ready():
